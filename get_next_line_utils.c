@@ -6,12 +6,11 @@
 /*   By: zjamali <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 19:43:09 by zjamali           #+#    #+#             */
-/*   Updated: 2019/11/20 01:29:27 by zjamali          ###   ########.fr       */
+/*   Updated: 2019/11/22 09:41:45 by zjamali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdlib.h>
 size_t		ft_strlen(const char *s)
 {
 	size_t counter;
