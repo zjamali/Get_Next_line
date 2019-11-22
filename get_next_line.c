@@ -22,13 +22,33 @@ int leak(char **buff)
 	}
 	return (-1);
 }
+int 	continuey(char **str,char **line,int n)
+{
+	char *tmp ;
+	tmp= *str;
+
+	int i = 0;
+	if (n < 0)
+		return (0);
+	if(!*str && !n)
+		return 0;
+	while((*str)[i] != '\n' && (*str)[i] != '\0')
+		i++;
+	*line = ft_substr((*str),0,i);
+	if ((*str)[i] == '\n')
+		(*str) = ft_strdup((*str) + i + 1);
+	else
+		(*str) = NULL;
+	leak(&tmp);
+	return (1);
+}
 int		get_next_line(int fd, char **line)
 {
 	int n;
 	int i;
 	char *buff;
 	char	*tmp;
-	char static *str;
+	static char *str;
 
 	i = 0;
 	buff = malloc((BUFFER_SIZE));
@@ -47,22 +67,13 @@ int		get_next_line(int fd, char **line)
 			break;
 	}
 	leak(&buff);
-	tmp = str;
-	if(n < 0)
-		return(-1);
-	if(!str && !n)
-		return 0;
-	while(str[i] != '\n' && str[i] != '\0')
-			i++;
-	*line = ft_substr(str,0,i);
-	if (str[i] == '\n')
-		str = ft_strdup(str + i + 1);
-	else
-		str = NULL;
-	leak(&tmp);
-	return (1);
+	if (n < 0)
+		return (0);
+	return (continuey(&str,line,n));
 }
+
 int main()
+
 {
 	int fd;
 	int n ;
