@@ -20,6 +20,7 @@ int leak(char **buff)
 	}
 	return (-1);
 }
+<<<<<<< HEAD
 
 t_list *check(t_list **lst,int fd)
 {
@@ -32,6 +33,35 @@ t_list *check(t_list **lst,int fd)
 		(*lst)->str = NULL;
 		return (*lst);
 	}
+=======
+int 	continuey(char **str,char **line,int n)
+{
+	char *tmp ;
+	tmp= *str;
+
+	int i = 0;
+	if (n < 0)
+		return (0);
+	if(!*str && !n)
+		return 0;
+	while((*str)[i] != '\n' && (*str)[i] != '\0')
+		i++;
+	*line = ft_substr((*str),0,i);
+	if ((*str)[i] == '\n')
+		(*str) = ft_strdup((*str) + i + 1);
+	else
+		(*str) = NULL;
+	leak(&tmp);
+	return (1);
+}
+int		get_next_line(int fd, char **line)
+{
+	int n;
+	int i;
+	char *buff;
+	char	*tmp;
+	static char *str;
+>>>>>>> 6ed4b18601cc63ca935b4af2e0717d93aedd8ec0
 
 	ptr = lst;
 	if ((*ptr)->fd == fd)
@@ -42,6 +72,7 @@ t_list *check(t_list **lst,int fd)
 			return ((*ptr)->next);
 		*ptr = (*ptr)->next;
 	}
+<<<<<<< HEAD
 	if(!(((*ptr)->next)= (t_list*)malloc(sizeof(t_list))))
 		return NULL;
 	((*ptr)->next)->fd = fd;
@@ -72,6 +103,16 @@ int gnl_continue(char **str,char **line,int n)
 }
 
 int		get_next_line(int fd, char **line)
+=======
+	leak(&buff);
+	if (n < 0)
+		return (0);
+	return (continuey(&str,line,n));
+}
+
+int main()
+
+>>>>>>> 6ed4b18601cc63ca935b4af2e0717d93aedd8ec0
 {
 	int n;
 //	int i = 1;
