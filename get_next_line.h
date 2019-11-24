@@ -24,14 +24,6 @@ typedef struct s_list
 	struct s_list *next;
 }				t_list;
 
-typedef struct s_list {
-
-	int fd;
-	char *rest;
-	struct s_list *next;
-
-} t_list;
-
 size_t		ft_strlen(const char *s);
 char		*ft_strdup(const char *s1);
 char		*ft_strchr(const char *s, int c);
