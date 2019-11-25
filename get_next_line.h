@@ -6,7 +6,7 @@
 /*   By: zjamali <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 22:31:50 by zjamali           #+#    #+#             */
-/*   Updated: 2019/11/22 10:13:11 by zjamali          ###   ########.fr       */
+/*   Updated: 2019/11/25 15:06:09 by zjamali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#ifndef BUFFER_SIZE
+#define BUFFER_SIZE -1
+#endif
 typedef struct s_list
 {
 	int fd;
