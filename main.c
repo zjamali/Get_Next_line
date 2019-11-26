@@ -6,14 +6,14 @@
 /*   By: zjamali <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 09:48:08 by zjamali           #+#    #+#             */
-/*   Updated: 2019/11/25 15:40:57 by zjamali          ###   ########.fr       */
+/*   Updated: 2019/11/26 18:28:15 by zjamali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <string.h>
 
-int main()
+int main(int c,char **v)
 {
 /*	int n = 1;
 	int x = 100, i = 0;
@@ -40,8 +40,7 @@ int main()
 	   printf("***************************************************************************************************************\n");
 	   
 
-*/
-/*
+
 	printf("\n***********************************************************************************************************\n");
 	while( i < x && (n = get_next_line(fd1,&str)) > 0)
 	{
@@ -92,18 +91,16 @@ int main()
 	}
 */
 
-//	free(str);
-
-/*//	str = NULL;*/
+//	str = NULL;
 	char *str;
 	int k;
 	int fd;
-	fd = open("text.txt" ,O_RDONLY);
+	fd = open(v[c - 1] ,O_RDONLY);
 	//k = get_next_line(fd,&str);
 	//	printf("%s",str);
 	while((k = get_next_line(fd,&str) > 0))
 	{
-		printf("|%s|\n",str);
+		printf("%s\n",str);
 		free(str);
 	}
 	close(fd);

@@ -6,7 +6,7 @@
 /*   By: zjamali <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 22:26:31 by zjamali           #+#    #+#             */
-/*   Updated: 2019/11/25 15:16:13 by zjamali          ###   ########.fr       */
+/*   Updated: 2019/11/26 18:58:04 by zjamali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,18 @@ int gnl_continue(char **str,char **line,int *tab,t_list **head)
 }
 int		get_next_line(int fd, char **line)
 {
-	int tab[2];
+	int tab[3];
 	char *buff;
 	static t_list *head;
 	t_list *lst;
 	char *temp;
 
 	lst = check(&head,fd);
+	if(lst->str != NULL)
+	{
+		if(ft_strchr(lst->str,'\n'))
+			return (gnl_continue(&(lst->str),line,tab,&head));
+	}
 	if(fd < 0 || fd > 4682 || (buff = (char*)malloc(BUFFER_SIZE + 1)) == NULL \
 			|| read(fd,buff,0) || line == NULL )
 		return(-1);
