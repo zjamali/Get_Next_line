@@ -33,7 +33,7 @@ void delete_node(t_list **head, int fd)
 	if (temp == NULL) 
 		return;  
 	prev->next = temp->next; 
-	free(temp); 
+	free(temp);
 	temp = NULL;
 }
 
@@ -58,20 +58,20 @@ t_list *check(t_list **lst,int fd)
 		return (*lst);
 	}
 	ptr = *lst;
-	if ((ptr)->fd == fd)
+	if (ptr->fd == fd)
 	{
 		return (ptr);
 	}
-	while(((ptr)->next) != NULL)
+	while((ptr->next) != NULL)
 	{
-		if(((ptr)->next)->fd == fd)
+		if((ptr->next)->fd == fd)
 		{
-			return ((ptr)->next);
+			return (ptr->next);
 		}
-		ptr = (ptr)->next;
+		ptr = ptr->next;
 	}
 	ptr->next = lstnew(fd);
-	return ((ptr)->next);
+	return (ptr->next);
 }
 int gnl_continue(char **str,char **line,int *tab,t_list **head)
 {
