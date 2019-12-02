@@ -13,7 +13,7 @@
 #include "get_next_line.h"
 #include <string.h>
 
-int main(int c,char **v)
+int main()
 {
 /*	int n = 1;
 	int x = 100, i = 0;
@@ -50,7 +50,7 @@ int main(int c,char **v)
 	}
 	i = 0;
 	printf("\n***********************************************************************************************************\n");
-	while(i < x && (n = get_next_line(fd,&str))>0)
+	while(i < x && (n = get_next_line(fd2,&str))>0)
 	{
 		printf("|%s| |%d|\n",str,n);
 		i++;
@@ -89,13 +89,13 @@ int main(int c,char **v)
 			i++;
 			free(str);
 	}
-*/
+
 
 //	str = NULL;
-	char *str;
+*/	char *str;
 	int k;
 	int fd;
-	fd = open(v[c - 1] ,O_RDONLY);
+	fd = open("big.txt" ,O_RDONLY);
 	//k = get_next_line(fd,&str);
 	//	printf("%s",str);
 	while((k = get_next_line(fd,&str) > 0))
@@ -104,5 +104,6 @@ int main(int c,char **v)
 		free(str);
 	}
 	close(fd);
+
 	return 0;
 }

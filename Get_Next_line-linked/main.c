@@ -13,15 +13,15 @@
 #include "get_next_line.h"
 #include <string.h>
 
-int main(int c,char **v)
+int main()
 {
-/*	int n = 1;
+	int n = 1;
 	int x = 100, i = 0;
 	char *str;
 	int fd = open("get_next_line.h",O_RDONLY);
 	int fd1 = open("get_next_line.c",O_RDONLY);
 	int fd2 = open("get_next_line_utils.c",O_RDONLY);
-
+/*
 	   printf("***********************************************************************************************************\n");
 	   while((n = get_next_line(fd,&str)) > 0)
 	   {
@@ -40,7 +40,7 @@ int main(int c,char **v)
 	   printf("***************************************************************************************************************\n");
 	   
 
-
+*/
 	printf("\n***********************************************************************************************************\n");
 	while( i < x && (n = get_next_line(fd1,&str)) > 0)
 	{
@@ -89,7 +89,7 @@ int main(int c,char **v)
 			i++;
 			free(str);
 	}
-*/
+/*
 
 //	str = NULL;
 	char *str;
@@ -103,6 +103,6 @@ int main(int c,char **v)
 		printf("%s\n",str);
 		free(str);
 	}
-	close(fd);
+	close(fd);*/
 	return 0;
 }

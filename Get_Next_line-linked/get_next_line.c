@@ -12,17 +12,27 @@
 
 #include "get_next_line.h"
 
-void delete_node(t_list **head, int fd) 
+/*void print_lst(t_list *lst)
+{
+	printf("list ->");
+	while(lst)
+	{
+		lst = lst->next;
+	}
+	printf("\n");
+}*/
+void delete_node(t_list **head,int fd) 
 {
 	t_list  *temp;
 	t_list *prev;
 
 	temp = *head;
 	if (temp != NULL && temp->fd == fd) 
-	{ 
+	{
 		*head = temp->next;
 		free(temp);
-		temp = NULL;
+		temp = NULL;	
+	//	print_lst(*head);
 		return;
 	} 
 	while (temp != NULL && temp->fd != fd) 
@@ -31,8 +41,8 @@ void delete_node(t_list **head, int fd)
 		temp = temp->next; 
 	} 
 	if (temp == NULL) 
-		return;  
-	prev->next = temp->next; 
+		return;
+	prev->next = temp->next;
 	free(temp);
 	temp = NULL;
 }
@@ -73,33 +83,36 @@ t_list *check(t_list **lst,int fd)
 	ptr->next = lstnew(fd);
 	return (ptr->next);
 }
-int gnl_continue(char **str,char **line,int *tab,t_list **head)
+
+int get_line(t_list *lst,char **line,int n,t_list **head)
 {
 	char *temp;
 	int i;
 
-	 if(tab[0] < 0)
-		          return(-1);
-	  if(!(*str) && !(tab[0]))
-		           return 0;
-	temp = *str;
+	if(n < 0)
+		return(-1);
+	if(!(lst->str) && !n)
+	{
+		delete_node(head,lst->fd);
+		return 0;
+	}
+	temp = lst->str;
 	i = 0;
-	while((*str)[i] != '\n' && (*str)[i] != '\0')
+	while((lst->str)[i] != '\n' && (lst->str)[i] != '\0')
 		i++;
-	*line = ft_substr((*str),0,i);
-	if ((*str)[i] == '\n' && (*str)[i + 1])
-		*str = ft_strdup(*str + i + 1);
+	*line = ft_substr((lst->str),0,i);
+	if ((lst->str)[i] == '\n' && (lst->str)[i + 1])
+		lst->str = ft_strdup(lst->str + i + 1);
 	else
 	{
-		*str = NULL;
-		delete_node(head,tab[1]);
+		lst->str = NULL;
 	}
 	free(temp);
 	return (1);
 }
 int		get_next_line(int fd, char **line)
 {
-	int tab[3];
+	int n;
 	char *buff;
 	static t_list *head;
 	t_list *lst;
@@ -107,17 +120,15 @@ int		get_next_line(int fd, char **line)
 
 	lst = check(&head,fd);
 	if(lst->str != NULL)
-	{
 		if(ft_strchr(lst->str,'\n'))
-			return (gnl_continue(&(lst->str),line,tab,&head));
-	}
+			return (get_line(lst,line,1,&head));
 	if(fd < 0 || fd > 4682 || (buff = (char*)malloc(BUFFER_SIZE + 1)) == NULL \
 			|| read(fd,buff,0) || line == NULL )
 		return(-1);
-	while((tab[0] = read(fd,buff,BUFFER_SIZE)) > 0)
+	while((n = read(fd,buff,BUFFER_SIZE)) > 0)
 	{
 		temp = lst->str;
-		buff[tab[0]] = '\0';
+		buff[n] = '\0';
 		if(lst->str == NULL)
 			lst->str = ft_strdup(buff);
 		else
@@ -127,6 +138,5 @@ int		get_next_line(int fd, char **line)
 			break;
 	}
 	free(buff);
-	tab[1] = fd;
-	return (gnl_continue(&(lst->str),line,tab,&head));
+	return (get_line(lst,line,n,&head));
 }
