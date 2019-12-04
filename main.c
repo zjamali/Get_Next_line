@@ -90,19 +90,16 @@ int main()
 			free(str);
 	}
 
-*/
-//	str = NULL;
+
 	char *str;
 	int k;
 	int fd;
 	fd = open("text.txt",O_RDONLY);
-	//k = get_next_line(fd,&str);
-	//	printf("%s",str);
-	fd = -3000;
 	while((k = get_next_line(fd,&str) > 0))
 	{
 		printf("%s\n",str);
 		free(str);
 	}
+	*/
 	return 0;
 }
