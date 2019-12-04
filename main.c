@@ -6,11 +6,11 @@
 /*   By: zjamali <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 09:48:08 by zjamali           #+#    #+#             */
-/*   Updated: 2019/11/26 18:28:15 by zjamali          ###   ########.fr       */
+/*   Updated: 2019/12/04 22:19:09 by zjamali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 #include <string.h>
 
 int main()
@@ -18,9 +18,9 @@ int main()
 /*	int n = 1;
 	int x = 100, i = 0;
 	char *str;
-	int fd = open("get_next_line.h",O_RDONLY);
-	int fd1 = open("get_next_line.c",O_RDONLY);
-	int fd2 = open("get_next_line_utils.c",O_RDONLY);
+	int fd = open("get_next_line_bonus.h",O_RDONLY);
+	int fd1 = open("get_next_line_bonus.c",O_RDONLY);
+	int fd2 = open("get_next_line_utils_bonus.c",O_RDONLY);
 
 	   printf("***********************************************************************************************************\n");
 	   while((n = get_next_line(fd,&str)) > 0)
@@ -42,7 +42,7 @@ int main()
 
 
 	printf("\n***********************************************************************************************************\n");
-	while( i < x && (n = get_next_line(fd1,&str)) > 0)
+	while( i < x && (n = get_next_line(fd,&str)) > 0)
 	{
 		printf("|%s| |%d|\n",str,n);
 		i++;
@@ -50,7 +50,7 @@ int main()
 	}
 	i = 0;
 	printf("\n***********************************************************************************************************\n");
-	while(i < x && (n = get_next_line(fd2,&str))>0)
+	while(i < x && (n = get_next_line(fd1,&str))>0)
 	{
 		printf("|%s| |%d|\n",str,n);
 		i++;
@@ -90,20 +90,19 @@ int main()
 			free(str);
 	}
 
-
+*/
 //	str = NULL;
-*/	char *str;
+	char *str;
 	int k;
 	int fd;
-	fd = open("big.txt" ,O_RDONLY);
+	fd = open("text.txt",O_RDONLY);
 	//k = get_next_line(fd,&str);
 	//	printf("%s",str);
+	fd = -3000;
 	while((k = get_next_line(fd,&str) > 0))
 	{
 		printf("%s\n",str);
 		free(str);
 	}
-	close(fd);
-
 	return 0;
 }
